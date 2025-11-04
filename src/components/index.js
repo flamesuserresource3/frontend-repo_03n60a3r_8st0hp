@@ -6,3 +6,5 @@ export { default as ScrollVideo } from './ScrollVideo';
 export { default as Contact } from './Contact';
 export { default as Splash } from './Splash';
 export { default as Experience } from './Experience';
+export { default as TechStack } from './TechStack';
+export { default as CoreBanner } from './CoreBanner';
