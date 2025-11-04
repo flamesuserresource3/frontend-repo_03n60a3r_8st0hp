@@ -68,7 +68,7 @@ const Hero = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-[100svh] grid place-items-center overflow-hidden bg-gradient-to-br from-black via-slate-900 to-slate-800 dark:from-black dark:via-slate-900 dark:to-slate-800">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/4Zh-Q6DWWp5yPnQf/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline scene="https://prod.spline.design/7m4PRZ7kg6K1jPfF/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_20%,rgba(0,201,255,0.15),transparent),radial-gradient(800px_400px_at_80%_60%,rgba(146,254,157,0.15),transparent)]" />
