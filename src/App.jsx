@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Splash, Hero, Projects, Contact } from './components';
+import { Splash, Hero, Experience, Contact } from './components';
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -37,7 +37,7 @@ function App() {
         ) : (
           <motion.main key="home" variants={pageVariants} initial="initial" animate="animate" exit="exit">
             <Hero />
-            <Projects />
+            <Experience />
             <Contact />
           </motion.main>
         )}

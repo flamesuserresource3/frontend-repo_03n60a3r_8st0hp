@@ -5,3 +5,4 @@ export { default as ParallaxShowcase } from './ParallaxShowcase';
 export { default as ScrollVideo } from './ScrollVideo';
 export { default as Contact } from './Contact';
 export { default as Splash } from './Splash';
+export { default as Experience } from './Experience';
