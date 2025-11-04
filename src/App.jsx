@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Navbar, Hero, Projects, ParallaxShowcase, ScrollVideo, Contact, Splash } from './components';
+import { Splash, Hero, Projects, Contact } from './components';
 
 function App() {
   const [showSplash, setShowSplash] = useState(() => {
@@ -26,10 +26,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 dark:bg-[#05060a] dark:text-white selection:bg-sky-300/40">
-      {/* Subtle cosmic background */}
+      {/* Subtle background accents */}
       <div aria-hidden className="pointer-events-none fixed inset-0 bg-[radial-gradient(1200px_600px_at_10%_10%,rgba(0,201,255,0.08),transparent),radial-gradient(900px_450px_at_90%_70%,rgba(146,254,157,0.08),transparent)]" />
-
-      <Navbar />
 
       <AnimatePresence mode="wait">
         {showSplash ? (
@@ -40,8 +38,6 @@ function App() {
           <motion.main key="home" variants={pageVariants} initial="initial" animate="animate" exit="exit">
             <Hero />
             <Projects />
-            <ParallaxShowcase />
-            <ScrollVideo />
             <Contact />
           </motion.main>
         )}
