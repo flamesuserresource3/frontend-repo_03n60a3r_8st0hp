@@ -68,9 +68,11 @@ const Hero = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-[100svh] grid place-items-center overflow-hidden bg-gradient-to-br from-black via-slate-900 to-slate-800 dark:from-black dark:via-slate-900 dark:to-slate-800">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/rvFZ5oikmZSIbmGQ/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        {/* Spline cover background (auto-enhanced asset) */}
+        <Spline scene="https://prod.spline.design/WCoEDSwacOpKBjaC/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
+      {/* Non-blocking gradient overlays */}
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_20%,rgba(0,201,255,0.15),transparent),radial-gradient(800px_400px_at_80%_60%,rgba(146,254,157,0.15),transparent)]" />
 
       <motion.div style={{ y: y1 }} className="absolute -top-16 right-10 w-72 h-72 rounded-full bg-gradient-to-tr from-[#00C9FF] to-[#92FE9D] opacity-20 blur-3xl pointer-events-none" />

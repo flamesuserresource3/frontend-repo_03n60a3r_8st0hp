@@ -28,9 +28,9 @@ const MagneticButton = ({ children, onClick }) => {
 
   return (
     <motion.div style={{ x: springX, y: springY }} onMouseMove={handleMouseMove} onMouseLeave={reset} ref={ref} className="inline-block">
-      <button onClick={onClick} className="relative inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-white bg-transparent border border-white/20 hover:border-white/40 transition shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+      <button onClick={onClick} className="group relative inline-flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 transition backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.15)]">
         <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#7C3AED]/30 via-[#06B6D4]/20 to-[#EC4899]/30 opacity-0 group-hover:opacity-100 blur pointer-events-none" />
-        {children}
+        Open
       </button>
     </motion.div>
   );
@@ -65,7 +65,7 @@ const Splash = ({ onOpen }) => {
 
     const composer = new EffectComposer(renderer);
     const renderPass = new RenderPass(scene, camera);
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), reduceMotion ? 0.4 : 0.9, 0.6, 0.85);
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), reduceMotion ? 0.35 : 0.8, 0.6, 0.85);
     composer.addPass(renderPass);
     composer.addPass(bloomPass);
 
@@ -113,6 +113,7 @@ const Splash = ({ onOpen }) => {
       vertexShader: `
         varying vec2 vUv;
         varying vec3 vPos;
+        uniform float uTime;
         void main() {
           vUv = uv;
           vPos = position;
@@ -246,8 +247,8 @@ const Splash = ({ onOpen }) => {
 
       // Self rotations
       hoverables.forEach((m) => {
-        const rs = rotationSpeeds.get(m.uuid) || 0.004;
-        m.rotation.y += rs * (reduceMotion ? 0.4 : 1);
+        const rs = (rotationSpeeds.get(m.uuid) || 0.004) * (reduceMotion ? 0.4 : 1);
+        m.rotation.y += rs;
       });
 
       // Hover effects
@@ -313,24 +314,31 @@ const Splash = ({ onOpen }) => {
 
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#05060a]">
+      {/* Three.js canvas */}
       <div ref={containerRef} className="absolute inset-0">
         <canvas ref={canvasRef} className="w-full h-full" />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(800px_400px_at_20%_20%,rgba(124,58,237,0.15),transparent),radial-gradient(600px_300px_at_80%_60%,rgba(6,182,212,0.15),transparent)]" />
+      {/* Soft cosmic gradients that don't block interaction */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_450px_at_15%_15%,rgba(124,58,237,0.18),transparent),radial-gradient(700px_350px_at_85%_70%,rgba(6,182,212,0.18),transparent)]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 sm:pt-36 text-center">
-        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-white">
-          Hello, I’m Khalif Siregar
+      {/* Center content */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-28 sm:pt-36 text-center">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="inline-block mx-auto rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md px-6 py-4">
+          <p className="text-xs tracking-widest uppercase text-slate-300">Portfolio Launch</p>
+        </motion.div>
+        <motion.h1 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }} className="mt-6 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-white">
+          Kotlin & Flutter Full‑Stack Mobile
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.8 }} className="mt-4 text-slate-300">
-          Kotlin & Flutter specialist — immersive experiences with performance.
+        <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} className="mt-4 text-slate-300 max-w-2xl mx-auto">
+          Modern, performant apps with a cinematic touch. Explore interactive work and case studies.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-10">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.8 }} className="mt-10">
           <MagneticButton onClick={onOpen}>Open</MagneticButton>
         </motion.div>
       </div>
 
+      {/* Loading bar */}
       <AnimatePresence>
         {!ready && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute bottom-0 left-0 right-0 mx-auto w-full max-w-xl mb-10 px-6">
