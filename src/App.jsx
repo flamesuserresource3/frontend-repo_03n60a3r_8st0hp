@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
+import ParallaxShowcase from './components/ParallaxShowcase';
+import ScrollVideo from './components/ScrollVideo';
 import Contact from './components/Contact';
 import Splash from './components/Splash';
 
@@ -22,6 +24,8 @@ function App() {
             <main>
               <Hero />
               <Projects />
+              <ParallaxShowcase />
+              <ScrollVideo />
               <Contact />
             </main>
           </motion.div>
